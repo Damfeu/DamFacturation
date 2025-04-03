@@ -22,7 +22,7 @@ console.log(invoice)
         <input
           type="text"
           value={invoice?.issuerName}
-          placeholder="Nom de l'entreprise emettrice"
+          placeholder="Nom de l&apos;entreprise emettrice"
           className="input input-bordered w-full resize-none "
           required
           onChange={(e)=>handleInputChange(e, 'issuerName')}
@@ -41,7 +41,7 @@ console.log(invoice)
         <input
           type="text"
           value={invoice?.clientName}
-          placeholder="Nom de l'entreprise cliente"
+          placeholder="Nom de l&apos;entreprise cliente"
           className="input input-bordered w-full resize-none "
           required
           onChange={(e)=>handleInputChange(e, 'clientName')}
@@ -65,7 +65,7 @@ console.log(invoice)
           onChange={(e)=>handleInputChange(e, 'invoiceDate')}
         />
 
-        <h2 className="badge badge-accent">Date d'échéance</h2>
+        <h2 className="badge badge-accent">Date d&apos;échéance</h2>
         <input
           type="date"
           value={invoice?.dueDate}

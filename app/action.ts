@@ -2,32 +2,46 @@
 
 import prisma from "@/lib/prisma";
 import { Invoice } from "@/type";
-import { error } from "console";
+// import { error } from "console";
 import { randomBytes } from "crypto";
 // import { Invoice } from "@/type";
 
 
 export async function checkAndAddUser(email: string, name: string) {
-    if (!email) return;
-    // ici on recherche l'utilisateur
+    if (!email) {
+        console.error("Erreur : l'email est invalide ou manquant.");
+        return;
+    }
+
     try {
+        // Vérification des valeurs
+        console.log("Vérification de l'utilisateur avec l'email :", email);
+        
         const existingUser = await prisma.user.findUnique({
-            where: {
-                email: email
-            }
-        })
-// ici c'est quand l'utilisateur n'existe pas donc on le créer
-        if (!existingUser && name) {
-            await prisma.user.create({
-                data: {
-                    email,
-                    name
-                }
-            })
+            where: { email }
+        });
+
+        if (existingUser) {
+            console.log("L'utilisateur existe déjà :", existingUser);
+            return;
         }
 
+        if (!name || name.trim() === "") {
+            console.error("Erreur : le nom est invalide ou vide.");
+            return;
+        }
+
+        // Création de l'utilisateur
+        console.log("Création d'un nouvel utilisateur :", { email, name });
+        
+        await prisma.user.create({
+            data: { email, name: name.trim() }
+        });
+
+        console.log("Utilisateur créé avec succès.");
+
     } catch (error) {
-        console.error(error)
+        console.error("Erreur lors de l'ajout de l'utilisateur :", error);
     }
 }
 

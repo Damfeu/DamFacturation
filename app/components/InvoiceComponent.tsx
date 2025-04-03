@@ -62,8 +62,7 @@ const getStatusBadge = (status: number) => {
 };
 
 const InvoiceComponent: React.FC<InvoiceComponentProps> = ({
-  invoice,
-  index,
+  invoice
 }) => {
   const calculTotal = () => {
     // ici on a utiliser Reduce parceque dans une facture on peut avoir plusieur 
@@ -100,7 +99,7 @@ const InvoiceComponent: React.FC<InvoiceComponentProps> = ({
             <div className="uppercase text-sm">FACT-{invoice.id}</div>
 
             <div>
-              <div className="stat-value text-xl ">{calculTotal() .toFixed(2)}fr CFA</div>
+              <div className="stat-value text-xl ">{calculTotal().toFixed(2)}fr CFA</div>
             </div>
             <div className="stat-desc">
 {invoice.name}

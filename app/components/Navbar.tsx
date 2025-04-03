@@ -35,7 +35,7 @@ if (user?.primaryEmailAddress?.emailAddress && user.fullName) {
         <Link
           href={href}
           key={href}
-          className={`btn-sm btn $ {classNames} ${
+          className={`btn-sm btn ${classNames} ${
             isActiveLink(href) ? "btn-accent" : ""
           }`}
         >
